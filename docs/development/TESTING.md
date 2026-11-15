@@ -45,8 +45,9 @@ Manter PDFs de teste autorizados e anonimizados quando necessário em
 redistribuição não seja permitida.
 
 Incluir casos: - PDF digital com texto. - PDF escaneado. - PDF misto. -
-Questões com imagens ou formatação incomum, se suportadas. - Documento
-inválido/corrompido. - Questão com alternativa ausente ou ambígua.
+Questões com imagens ou formatação incomum (não devem ser extraídas;
+escopo é só textual). - Documento inválido/corrompido. - Questão com
+alternativa ausente ou ambígua.
 
 ## 6. Cobertura
 

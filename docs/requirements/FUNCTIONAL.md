@@ -10,7 +10,9 @@
 -   **RF02 --- Upload de PDF:** permitir ao administrador enviar PDFs
     contendo provas do ENADE.
 -   **RF03 --- Extração automática:** identificar enunciados, numeração
-    e alternativas, preservando ordem e associação.
+    e alternativas, preservando ordem e associação. **Apenas questões
+    100% textuais; questões com figuras, imagens, tabelas ou outros
+    elementos não textuais são ignoradas.**
 -   **RF04 --- Visualização:** apresentar questões extraídas para
     revisão administrativa.
 -   **RF05 --- Edição:** permitir corrigir numeração, enunciado e

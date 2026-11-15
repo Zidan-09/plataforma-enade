@@ -74,3 +74,8 @@ devem manter referências ao conteúdo congelado utilizado.
 
 Extração concluída não equivale a revisão concluída. Questões extraídas
 devem permanecer em estado intermediário até a revisão administrativa.
+
+A extração ignora questões com figuras, imagens, tabelas ou qualquer
+outro elemento não textual (conforme ADR-006). Apenas questões
+100% textuais são extraídas; questões não textuais são marcadas como
+ignoradas e não podem ser aprovadas como questões oficiais.

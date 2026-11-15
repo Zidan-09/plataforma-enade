@@ -117,6 +117,17 @@ enunciado detectado - alternativas detectadas - página de origem -
 método utilizado (TEXT/OCR) - alertas e confiança, se mensurável -
 estado de revisão
 
+Quando a questão contiver elementos não textuais (imagens, figuras,
+tabelas, diagramas, etc.), ela é ignorada (ADR-006). O sistema deve
+registrar:
+
+-   estado de revisão marcando a questão como ignorada (ex.:
+    `reviewStatus = IGNORED`);
+-   motivo da exclusão para auditoria e contagem (ex.:
+    `ignoredReason = NON_TEXTUAL_CONTENT`);
+-   a questão ignorada não pode ser aprovada como questão oficial na
+    revisão administrativa.
+
 ## 2. Relacionamentos principais
 
 -   User 1:N Exam (createdBy).

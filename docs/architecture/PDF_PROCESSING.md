@@ -31,10 +31,35 @@ versão.
 8.  Aplicar extração textual nas páginas adequadas.
 9.  Aplicar OCR somente onde necessário.
 10. Normalizar texto sem perder referência à página e ordem.
-11. Identificar questões, enunciados e alternativas.
+11. Identificar questões, enunciados e alternativas, filtrando questões
+    com elementos não textuais (ADR-006).
 12. Registrar resultados, alertas e status.
 13. Disponibilizar revisão administrativa.
 14. Após revisão, enviar questões ao fluxo de Questions.
+
+## 3.1. Filtro de questões não textuais
+
+Conforme ADR-006, a extração processa apenas questões 100% textuais.
+Questões que possuam figuras, imagens, tabelas ou qualquer elemento não
+textual são **ignoradas** no pipeline.
+
+No momento da detecção de cada questão, o processamento deve:
+
+-   Avaliar se a região da questão contém elementos gráficos (imagens,
+    tabelas, diagramas, formulários, etc.).
+-   Se contiver, marcar a questão como **ignorada** com motivo explícito
+    (`NON_TEXTUAL_CONTENT`), sem tentar extrair enunciado ou
+    alternativas.
+-   Questões textuais no mesmo PDF continuam sendo extraídas
+    normalmente.
+-   Questões ignoradas permanecem em estado intermediário para auditoria e
+    contagem, mas **não podem ser aprovadas** como questões oficiais na
+    revisão administrativa.
+
+A heurística de detecção deve ser registrada e ajustada contra um
+conjunto representativo de PDFs reais, para minimizar falsos
+positivos (ex.: ícones pequenos interpretados como figura) e falsos
+negativos (ex.: elemento gráfico mal detectado pelo pdfjs).
 
 ## 4. Parser
 
@@ -43,7 +68,9 @@ Reconhecer rótulos de alternativas (A, B, C, D, E e variações
 suportadas). - Preservar quebras de parágrafo relevantes. - Associar
 alternativas à questão correta. - Detectar questões incompletas e
 numeração duplicada. - Registrar página de origem. - Evitar assumir que
-todo marcador de letra é uma alternativa.
+todo marcador de letra é uma alternativa. - Detectar elementos não
+textuais (imagens, tabelas, figuras) e marcar a questão como ignorada
+com motivo (`NON_TEXTUAL_CONTENT`), sem tentar extrair seu conteúdo.
 
 O parser deve ser testado com PDFs reais variados. Não presumir um único
 layout para todas as edições do ENADE.
